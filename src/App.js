@@ -9,9 +9,7 @@ import {addTodo} from "./store/todoSlice";
 const App = () => {
     const dispatch = useDispatch();
     const [input, setInput] = useState('');
-    const inputHandler = (txt) => {
-        setInput(txt);
-    };
+
 
     const addTask = () => {
         if (!input.trim().length) return;
@@ -22,7 +20,7 @@ const App = () => {
 
     return (
         <div className='app'>
-            <InputForm input={input} addTask={addTask} inputHandler={inputHandler}/>
+            <InputForm input={input} addTask={addTask} inputHandler={setInput}/>
             <Todos  />
 
         </div>
