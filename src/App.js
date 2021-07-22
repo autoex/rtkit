@@ -3,48 +3,27 @@ import './App.css'
 import {useState} from "react";
 import InputForm from "./components/InputForm";
 import Todos from "./components/Todos";
+import {useDispatch} from "react-redux";
+import {addTodo} from "./store/todoSlice";
 
 const App = () => {
+    const dispatch = useDispatch();
     const [input, setInput] = useState('');
-    const [todos, setTodos] = useState([]);
     const inputHandler = (txt) => {
         setInput(txt);
     };
 
-    const addTodo = () => {
+    const addTask = () => {
         if (!input.trim().length) return;
-        setTodos([
-            ...todos, {
-                id: new Date().valueOf(),
-                completed: false,
-                txt: input
-            }
-        ]);
+        dispatch(addTodo({input}));
         setInput('')
 
     };
-    const removeTodo = (id) => {
-        setTodos(
-            todos.filter(todo => todo.id !== id)
-        )
 
-
-    };
-
-    const checkedToggle = (id) => {
-       setTodos(
-           todos.map(todo=> {
-               if( todo.id !== id) return todo;
-               return {...todo,
-               completed: !todo.completed}
-           })
-       )
-
-    };
     return (
         <div className='app'>
-            <InputForm input={input} addTodo={addTodo} inputHandler={inputHandler}/>
-            <Todos todos={todos} checkedToggle={checkedToggle} removeTodo={removeTodo} />
+            <InputForm input={input} addTask={addTask} inputHandler={inputHandler}/>
+            <Todos  />
 
         </div>
     );
