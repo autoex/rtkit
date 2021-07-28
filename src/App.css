@@ -1,8 +1,13 @@
 .app {
   width: 800px;
-  margin: auto;
+  margin: 20px auto 0;
+
 }
 .todoList li input:checked+ span {
   text-decoration: line-through;
 
+}
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
 }

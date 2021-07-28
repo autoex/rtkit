@@ -6,10 +6,12 @@ const TodoItem = ({id, txt, completed}) => {
     const dispatch = useDispatch()
 
     return (
-        <li key={id}>
-            <input type="checkbox" checked={completed} onChange={()=>dispatch(checkedToggle({id}))}/>
-            <span>{txt}</span>
-            <span onClick={() => dispatch(removeTodo({id}))}>&times;</span>
+        <li key={id} className='list-group-item'>
+            <div><input className="form-check-input me-1" type="checkbox" checked={completed}
+                        onChange={() => dispatch(checkedToggle({id}))}/>
+                <span>{txt}</span></div>
+
+            <button onClick={() => dispatch(removeTodo({id}))} type="button" className="btn-close" aria-label="Close"></button>
         </li>
     );
 };

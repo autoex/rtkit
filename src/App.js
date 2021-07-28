@@ -11,7 +11,8 @@ const App = () => {
     const [input, setInput] = useState('');
 
 
-    const addTask = () => {
+    const addTask = (e) => {
+        e.preventDefault()
         if (!input.trim().length) return;
         dispatch(addTodo({input}));
         setInput('')
