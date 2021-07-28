@@ -5,6 +5,8 @@ import InputForm from "./components/InputForm";
 import Todos from "./components/Todos";
 import {useDispatch} from "react-redux";
 import {addTodo} from "./store/todoSlice";
+import {Route, Switch} from "react-router-dom";
+import Bomb from "./components/Bomb";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -21,9 +23,13 @@ const App = () => {
 
     return (
         <div className='app'>
-            <InputForm input={input} addTask={addTask} inputHandler={setInput}/>
-            <Todos  />
-
+            <Switch>
+                <Route path='/' exact>
+                    <InputForm input={input} addTask={addTask} inputHandler={setInput}/>
+                    <Todos/>
+                </Route>
+                <Route path='/bomb' component={Bomb} />
+            </Switch>
         </div>
     );
 };
